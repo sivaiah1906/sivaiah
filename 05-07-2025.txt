@@ -1,0 +1,21 @@
+#!/u01/app/oracle/middleware/wls12c/oracle_common/common/bin/wlst.sh
+readTemplate("/u01/app/oracle/middleware/wls12c/wlserver/common/templates/wls/wls.jar")
+cd('/Server/AdminServer')
+setOption('ServerStartMode', 'prod')
+cmo.setName('admin_test')
+cmo.setListenPort(9001)
+create('AdminServer','SSL')
+cd('SSL/AdminServer')
+set('Enabled', 'true')
+set('ListenPort', 9002)
+cd('/')
+cd('Security/base_domain/User/weblogic')
+cmo.setPassword('weblogic1')
+setOption('OverwriteDomain', 'true')
+writeDomain('/u01/app/oracle/jun2/middleware/wls12ca/user_projects/domains/mytest_domain')
+print "Domain creation completed successfully"
+closeTemplate()
+exit()
+
+
+https://drive.google.com/drive/folders/1cIylFmlfF0prKLmWoGENyjl0g-PkvRGP?usp=sharing
